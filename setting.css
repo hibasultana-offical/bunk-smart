@@ -1,0 +1,698 @@
+
+/* =========================================
+   BUNK SMART — THE LITTLE MESSENGER SETTINGS
+========================================= */
+
+/* SETTINGS OVERLAY */
+
+.settings-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+
+    align-items: center;
+    justify-content: center;
+
+    padding: 25px;
+}
+
+.settings-overlay:target {
+    display: flex;
+}
+
+/* BLURRED DASHBOARD BACKGROUND */
+
+.settings-backdrop {
+    position: absolute;
+    inset: 0;
+
+    background: rgba(29, 43, 33, 0.32);
+    backdrop-filter: blur(9px);
+    -webkit-backdrop-filter: blur(9px);
+}
+
+/* MAIN EXPERIENCE */
+
+.settings-experience {
+    position: relative;
+    z-index: 2;
+
+    width: min(760px, 94vw);
+    max-height: 92vh;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    overflow-y: auto;
+    scrollbar-width: thin;
+    scrollbar-color: #9aab87 transparent;
+}
+
+/* =========================================
+   BIRD DELIVERY SCENE
+========================================= */
+
+.settings-delivery-scene {
+    position: relative;
+    width: 100%;
+    height: 190px;
+    flex-shrink: 0;
+
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+
+    perspective: 900px;
+}
+
+.messenger-bird {
+    position: absolute;
+    z-index: 5;
+    overflow: visible;
+
+    width: 155px;
+    left: -190px;
+    top: 65px !important;
+
+    animation: messenger-flight 3.1s ease-in-out forwards;
+}
+
+.messenger-bird svg {
+    width: 100%;
+    overflow: visible;
+}
+
+.bird-message {
+    transform-origin: 165px 57px;
+    animation: message-release 3.1s ease-in-out forwards;
+}
+
+.delivery-caption {
+    position: absolute;
+    top: 5px;
+
+    color: #657c57;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2.4px;
+
+    opacity: 0;
+    animation: caption-arrive 0.7s ease 1.3s forwards;
+}
+
+/* =========================================
+   ENVELOPE
+========================================= */
+
+.delivered-envelope {
+    position: absolute;
+    z-index: 3;
+
+    width: 190px;
+    height: 120px;
+    bottom: 8px;
+    left: 50%;
+
+    transform: translateX(-50%) translateY(20px) scale(0.75);
+    opacity: 0;
+
+    filter: drop-shadow(0 12px 15px rgba(38, 55, 38, 0.18));
+
+    animation: envelope-delivered 0.8s ease 2.05s forwards;
+}
+
+.envelope-back {
+    position: absolute;
+    inset: 0;
+
+    border-radius: 7px;
+    background: #e8dfc9;
+    border: 1px solid #c9b995;
+}
+
+.envelope-letter {
+    position: absolute;
+    z-index: 2;
+
+    width: 85%;
+    height: 100px;
+    left: 7.5%;
+    bottom: 4px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+
+    background: #f8f3e7;
+    border: 1px solid #d9ceb6;
+
+    opacity: 0;
+    animation: letter-rise 0.8s ease 3.05s forwards;
+}
+
+.letter-small-title {
+    color: #8b9879;
+    font-size: 8px;
+    letter-spacing: 2px;
+}
+
+.letter-main-title {
+    color: #34523e;
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-style: italic;
+}
+
+.letter-leaf {
+    color: #8b9e76;
+    font-size: 18px;
+}
+
+.envelope-front {
+    position: absolute;
+    z-index: 3;
+    inset: 0;
+
+    background: #eee5d1;
+    clip-path: polygon(0 0, 50% 58%, 100% 0, 100% 100%, 0 100%);
+    border-radius: 0 0 7px 7px;
+}
+
+.envelope-flap {
+    position: absolute;
+    z-index: 4;
+    inset: 0;
+
+    background: #d9c9a9;
+    clip-path: polygon(0 0, 100% 0, 50% 58%);
+
+    transform-origin: top center;
+    transform: rotateX(0deg);
+
+    animation: envelope-open 0.9s ease 3.05s forwards;
+}
+
+.envelope-seal {
+    position: absolute;
+    z-index: 5;
+
+    left: 50%;
+    top: 52%;
+    transform: translate(-50%, -50%);
+
+    width: 25px;
+    height: 25px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: #8b9b72;
+    border: 1px solid #6f815e;
+
+    color: #f7f0df;
+    font-family: 'Playfair Display', serif;
+    font-size: 13px;
+
+    animation: seal-fade 0.35s ease 3s forwards;
+}
+
+/* =========================================
+   SETTINGS LETTER / MAIN PANEL
+========================================= */
+
+.settings-letter {
+    position: relative;
+    width: min(650px, 100%);
+
+    padding: 28px 38px 22px;
+
+    border: 1px solid rgba(128, 148, 105, 0.35);
+    border-radius: 18px;
+
+    background:
+        radial-gradient(
+            circle at 100% 0%,
+            rgba(191, 205, 169, 0.28),
+            transparent 32%
+        ),
+        linear-gradient(
+            145deg,
+            #f5f3e8 0%,
+            #eaf0e2 52%,
+            #e2ead9 100%
+        );
+
+    box-shadow:
+        0 25px 65px rgba(25, 44, 31, 0.24),
+        inset 0 1px 0 rgba(255,255,255,0.9);
+
+    opacity: 0;
+    transform: translateY(35px) scale(0.94);
+
+    animation: settings-reveal 0.9s cubic-bezier(.2,.8,.2,1) 3.75s forwards;
+}
+
+/* TOP LINE */
+
+.settings-letter-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+
+    padding-bottom: 13px;
+    border-bottom: 1px solid rgba(100, 125, 80, 0.22);
+
+    color: #526d49;
+    font-size: 9px;
+    font-weight: 700;
+    letter-spacing: 2px;
+}
+
+.settings-letter-edition {
+    color: #89977a;
+    font-size: 8px;
+    font-weight: 500;
+}
+
+/* HEADING */
+
+.settings-letter-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    padding: 25px 0 22px;
+}
+
+.settings-letter-kicker {
+    color: #9b8052;
+    font-size: 9px;
+    font-weight: 600;
+    letter-spacing: 2px;
+}
+
+.settings-letter-heading h2 {
+    margin: 9px 0 7px;
+
+    color: #294b3d;
+    font-family: 'Playfair Display', serif;
+    font-size: 34px;
+    font-weight: 500;
+    line-height: 1.1;
+}
+
+.settings-letter-heading h2 em {
+    color: #718b5e;
+    font-weight: 400;
+}
+
+.settings-letter-heading p {
+    color: #788875;
+    font-size: 11px;
+}
+
+.settings-letter-decoration {
+    margin-right: 20px;
+
+    color: #91a77d;
+    font-family: 'Playfair Display', serif;
+    font-size: 65px;
+    transform: rotate(-18deg);
+}
+
+.settings-letter-divider {
+    height: 1px;
+    background: linear-gradient(
+        90deg,
+        #b8a477,
+        rgba(143, 166, 120, 0.35),
+        transparent
+    );
+}
+
+/* SETTINGS ACCORDION */
+
+.settings-options {
+    display: flex;
+    flex-direction: column;
+}
+
+.settings-item {
+    border-bottom: 1px solid rgba(104, 128, 87, 0.18);
+}
+
+.settings-item summary {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    padding: 15px 5px;
+
+    list-style: none;
+    cursor: pointer;
+}
+
+.settings-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.settings-symbol {
+    width: 34px;
+    height: 34px;
+    flex-shrink: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    background: rgba(133, 157, 108, 0.14);
+    border: 1px solid rgba(133, 157, 108, 0.22);
+
+    color: #718b5e;
+    font-size: 17px;
+}
+
+.settings-name {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    flex: 1;
+}
+
+.settings-name strong {
+    color: #34513d;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.settings-name small {
+    color: #87947e;
+    font-size: 10px;
+}
+
+.settings-arrow {
+    color: #718b5e;
+    font-size: 20px;
+    transition: transform 0.3s ease;
+}
+
+.settings-item[open] .settings-arrow {
+    transform: rotate(180deg);
+}
+
+.settings-content {
+    padding: 0 10px 16px 54px;
+}
+
+.settings-content p {
+    color: #788875;
+    font-size: 11px;
+    line-height: 1.7;
+}
+
+.settings-edit-btn {
+    margin-top: 10px;
+    padding: 8px 13px;
+
+    border: 1px solid rgba(87, 116, 72, 0.35);
+    border-radius: 7px;
+
+    background: rgba(255,255,255,0.42);
+    color: #526d49;
+
+    font-family: inherit;
+    font-size: 10px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: all 0.25s ease;
+}
+
+.settings-edit-btn span {
+    margin-left: 7px;
+}
+
+.settings-edit-btn:hover {
+    background: #526d49;
+    color: #f5f3e8;
+    transform: translateY(-2px);
+}
+
+/* FOOTER */
+
+.settings-letter-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+
+    padding-top: 17px;
+
+    color: #829274;
+    font-size: 8px;
+    font-weight: 600;
+    letter-spacing: 1.3px;
+}
+
+.settings-letter-footer span:nth-child(2) {
+    color: #91a77d;
+    font-size: 20px;
+}
+
+/* CLOSE BUTTON */
+
+.settings-close-btn {
+    position: absolute;
+    top: 16px;
+    right: 18px;
+
+    width: 30px;
+    height: 30px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+    border: 1px solid rgba(100, 125, 80, 0.25);
+
+    color: #526d49;
+    background: rgba(255,255,255,0.5);
+
+    font-size: 22px;
+    text-decoration: none;
+    transition: all 0.25s ease;
+}
+
+.settings-close-btn:hover {
+    background: #526d49;
+    color: #fff;
+    transform: rotate(90deg);
+}
+
+/* CLOSE TARGET */
+
+.settings-close-target {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+
+@keyframes messenger-flight {
+    0% {
+        left: -190px;
+        top: 55px;
+        transform: rotate(-8deg);
+    }
+
+    35% {
+        left: calc(50% - 100px);
+        top: 55px;
+        transform: rotate(3deg);
+    }
+
+    58% {
+        left: calc(50% - 100px);
+        top: 55px;
+        transform: rotate(0deg);
+    }
+
+    100% {
+        left: calc(100% + 180px);
+        top: 25px;
+        transform: rotate(8deg);
+    }
+}
+
+@keyframes message-release {
+    0%, 55% {
+        transform: translate(0, 0) rotate(0deg);
+        opacity: 1;
+    }
+
+    72%, 100% {
+        transform: translate(35px, 22px) rotate(12deg);
+        opacity: 0;
+    }
+}
+
+@keyframes caption-arrive {
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes envelope-delivered {
+    to {
+        opacity: 1;
+        transform: translateX(-50%) translateY(0) scale(1);
+    }
+}
+
+@keyframes letter-rise {
+    to {
+        opacity: 1;
+        transform: translateY(-25px);
+    }
+}
+
+@keyframes envelope-open {
+    to {
+        transform: rotateX(180deg);
+        opacity: 0.2;
+    }
+}
+
+@keyframes seal-fade {
+    to {
+        opacity: 0;
+        transform: translate(-50%, -50%) scale(0.4);
+    }
+}
+
+@keyframes settings-reveal {
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+
+/* =========================================
+   RESPONSIVE
+========================================= */
+
+@media (max-width: 650px) {
+
+    .settings-overlay {
+        padding: 12px;
+    }
+
+    .settings-experience {
+        width: 100%;
+        max-height: 100vh !important;
+    }
+
+    .settings-delivery-scene {
+        height: 155px;
+    }
+
+    .settings-letter {
+        padding: 24px 22px 18px;
+    }
+
+    .settings-letter-heading h2 {
+        font-size: 29px;
+    }
+
+    .settings-letter-decoration {
+        margin-right: 5px;
+        font-size: 48px;
+    }
+
+    .settings-item summary {
+        gap: 11px;
+    }
+}
+
+@media (max-width: 420px) {
+
+    .settings-delivery-scene {
+        height: 135px;
+    }
+
+    .messenger-bird {
+        width: 125px;
+    }
+
+    .delivered-envelope {
+        transform: translateX(-50%) translateY(20px) scale(0.7);
+    }
+
+    .settings-letter {
+        padding: 22px 17px 16px;
+    }
+
+    .settings-letter-top {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+
+    .settings-letter-edition {
+        font-size: 7px;
+    }
+
+    .settings-letter-heading h2 {
+        font-size: 26px;
+    }
+
+    .settings-letter-heading p {
+        font-size: 10px;
+    }
+
+    .settings-letter-decoration {
+        font-size: 38px;
+    }
+
+    .settings-name strong {
+        font-size: 13px;
+    }
+
+    .settings-content {
+        padding-left: 45px;
+    }
+
+    .settings-letter-footer {
+        font-size: 6px;
+        letter-spacing: 0.7px;
+    }
+}
+
+/* REDUCED MOTION ACCESSIBILITY */
+
+@media (prefers-reduced-motion: reduce) {
+    .messenger-bird,
+    .bird-message,
+    .delivery-caption,
+    .delivered-envelope,
+    .envelope-letter,
+    .envelope-flap,
+    .envelope-seal,
+    .settings-letter {
+        animation-duration: 0.01ms !important;
+        animation-delay: 0ms !important;
+    }
+}

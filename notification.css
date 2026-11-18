@@ -1,0 +1,600 @@
+/* =====================================
+   BUNK SMART - NOTIFICATIONS SCRAPBOOK
+===================================== */
+
+
+/* HEADER NOTIFICATION BUTTON */
+
+/* =====================================
+   NOTIFICATIONS HEADER BUTTON
+===================================== */
+
+.notification-trigger {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 13px 23px;
+
+    background: #E5EBDD;
+    color: #344B36 !important;
+
+    border: 1px solid #C8D4C1;
+    border-radius: 12px;
+
+    font-size: 14px;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+
+    text-decoration: none !important;
+
+    box-shadow: 0 3px 8px rgba(35, 55, 38, 0.08);
+
+    transition: all 0.3s ease;
+}
+
+/* HOVER EFFECT */
+
+.notification-trigger:hover {
+    background: #D4E1CD;
+    border-color: #A8B99D;
+
+    color: #263B2A !important;
+
+    transform: translateY(-2px);
+
+    box-shadow: 0 6px 14px rgba(35, 55, 38, 0.14);
+}
+
+/* CLICK EFFECT */
+
+.notification-trigger:active {
+    transform: scale(0.97);
+}
+
+
+/* BACKGROUND OVERLAY */
+
+.notifications-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 5000;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+
+    padding: 25px;
+
+    background: rgba(27, 38, 29, 0.48);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+
+/* SHOW POPUP */
+
+.notifications-overlay:target {
+    display: flex;
+}
+
+
+/* MAIN POPUP */
+
+.notifications-popup {
+    position: relative;
+
+    width: 900px;
+    max-width: 95%;
+    max-height: 90vh;
+
+    overflow-y: auto;
+    overflow-x: hidden;
+
+    padding: 30px 35px 22px;
+
+    background: #F5F2E7;
+
+    border: 1px solid #D9DDCD;
+    border-radius: 22px;
+
+    box-shadow:
+        0 25px 70px rgba(20, 35, 24, 0.28),
+        0 5px 15px rgba(20, 35, 24, 0.12);
+}
+
+
+/* POPUP SCROLLBAR */
+
+.notifications-popup::-webkit-scrollbar {
+    width: 7px;
+}
+
+.notifications-popup::-webkit-scrollbar-thumb {
+    background: #A8B59B;
+    border-radius: 20px;
+}
+
+
+/* HEADER */
+
+.notifications-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+
+    padding-bottom: 20px;
+
+    border-bottom: 1px solid #DDE1D4;
+}
+
+
+.notification-heading {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+
+.notification-subtitle {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 2px;
+
+    color: #829477;
+}
+
+
+.notification-heading h2 {
+    margin: 0;
+
+    font-family: Georgia, serif;
+    font-size: 30px;
+
+    color: #344B36;
+}
+
+
+.notification-heading p {
+    margin: 0;
+
+    font-size: 12px;
+    color: #89917E;
+}
+
+
+/* CLOSE BUTTON */
+
+.close-notifications {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 36px;
+    height: 36px;
+
+    border-radius: 50%;
+    background: #E6EBDD;
+
+    color: #496047;
+    font-size: 27px;
+    text-decoration: none;
+
+    transition: 0.3s;
+}
+
+.close-notifications:hover {
+    background: #D5E0CF;
+    transform: rotate(90deg);
+}
+
+
+/* =====================================
+   SCRAPBOOK AREA
+===================================== */
+
+.notification-scrapbook {
+    position: relative;
+
+    width: 100%;
+    height: 570px;
+
+    margin-top: 18px;
+
+    background:
+        radial-gradient(
+            circle at 20% 20%,
+            rgba(191, 204, 178, 0.17),
+            transparent 35%
+        ),
+        #F0EEE4;
+
+    border-radius: 15px;
+
+    overflow: hidden;
+}
+
+
+/* COMMON PAPER CARD */
+
+.notification-paper {
+    position: absolute;
+
+    width: 270px;
+    min-height: 175px;
+
+    padding: 18px 19px;
+
+    border-radius: 3px;
+
+    box-shadow:
+        3px 7px 15px rgba(48, 56, 42, 0.16),
+        0 2px 4px rgba(48, 56, 42, 0.08);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease;
+
+    cursor: default;
+}
+
+
+/* PAPER HOVER */
+
+.notification-paper:hover {
+    z-index: 20 !important;
+
+    transform: rotate(0deg) scale(1.05) !important;
+
+    box-shadow:
+        5px 14px 25px rgba(48, 56, 42, 0.22);
+}
+
+
+/* PAPER TEXT */
+
+.notification-paper h3 {
+    margin: 13px 0 8px;
+
+    font-family: Georgia, serif;
+    font-size: 17px;
+
+    color: #3C503A;
+}
+
+
+.notification-paper p {
+    margin: 0;
+
+    font-size: 12px;
+    line-height: 1.6;
+
+    color: #6F7969;
+}
+
+
+.paper-category {
+    display: inline-block;
+
+    font-size: 9px;
+    font-weight: 800;
+    letter-spacing: 1px;
+}
+
+
+.paper-time {
+    float: right;
+
+    font-size: 10px;
+    color: #929482;
+}
+
+
+.paper-footer {
+    display: block;
+
+    margin-top: 13px;
+
+    font-family: Georgia, serif;
+    font-size: 11px;
+    font-style: italic;
+
+    color: #829075;
+}
+
+
+/* =====================================
+   INDIVIDUAL SCRAPBOOK PAPERS
+===================================== */
+
+
+/* PAPER 1 */
+
+.paper-one {
+    top: 35px;
+    left: 65px;
+
+    background: #DDE8D5;
+
+    border: 1px solid #C3D2B9;
+
+    transform: rotate(-7deg);
+
+    z-index: 2;
+}
+
+
+/* PAPER 2 */
+
+.paper-two {
+    top: 95px;
+    left: 340px;
+
+    background: #F0E4D1;
+
+    border: 1px solid #E0CFB7;
+
+    transform: rotate(6deg);
+
+    z-index: 4;
+}
+
+
+/* PAPER 3 */
+
+.paper-three {
+    top: 245px;
+    left: 135px;
+
+    background: #E8EBDD;
+
+    border: 1px solid #CFD8C9;
+
+    transform: rotate(4deg);
+
+    z-index: 6;
+}
+
+
+/* PAPER 4 */
+
+.paper-four {
+    top: 285px;
+    left: 440px;
+
+    background: #F1E5D5;
+
+    border: 1px solid #E1D1BC;
+
+    transform: rotate(-6deg);
+
+    z-index: 8;
+}
+
+
+/* PAPER 5 */
+
+.paper-five {
+    top: 405px;
+    left: 285px;
+
+    background: #DCE7D7;
+
+    border: 1px solid #C5D3BF;
+
+    transform: rotate(3deg);
+
+    z-index: 10;
+}
+
+
+/* CATEGORY COLORS */
+
+.attendance-tag {
+    color: #55764E;
+}
+
+.reminder-tag {
+    color: #96754B;
+}
+
+.lecture-tag {
+    color: #667A65;
+}
+
+.semester-tag {
+    color: #987A58;
+}
+
+.update-tag {
+    color: #55764E;
+}
+
+
+/* =====================================
+   POPUP FOOTER
+===================================== */
+
+.notifications-footer {
+    padding-top: 15px;
+
+    text-align: center;
+
+    border-top: 1px solid #DDE1D4;
+}
+
+.notifications-footer p {
+    margin: 0;
+
+    font-family: Georgia, serif;
+    font-size: 12px;
+    font-style: italic;
+
+    color: #84917B;
+}
+/* =====================================
+   SCRAPBOOK DECORATIVE DETAILS
+===================================== */
+
+
+/* SOFT PAPER TEXTURE */
+
+.notification-paper {
+    background-image:
+        repeating-linear-gradient(
+            0deg,
+            rgba(255,255,255,0.08) 0px,
+            rgba(255,255,255,0.08) 1px,
+            transparent 1px,
+            transparent 4px
+        );
+}
+
+
+/* WASHI TAPE EFFECT */
+
+.paper-one::before,
+.paper-two::before,
+.paper-three::before,
+.paper-four::before,
+.paper-five::before {
+
+    content: "";
+
+    position: absolute;
+
+    width: 75px;
+    height: 19px;
+
+    top: -9px;
+    left: 50%;
+
+    transform: translateX(-50%) rotate(-4deg);
+
+    opacity: 0.78;
+
+    border-radius: 2px;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            rgba(255,255,255,0.28) 0px,
+            rgba(255,255,255,0.28) 4px,
+            transparent 4px,
+            transparent 8px
+        ),
+        #B8C8A9;
+
+    box-shadow: 0 2px 4px rgba(40,50,35,0.10);
+}
+
+
+/* DIFFERENT TAPE COLORS AND ANGLES */
+
+.paper-two::before {
+    background-color: #D9BE9C;
+    transform: translateX(-50%) rotate(5deg);
+}
+
+.paper-three::before {
+    background-color: #C5D1BA;
+    transform: translateX(-50%) rotate(-7deg);
+}
+
+.paper-four::before {
+    background-color: #DCC9AE;
+    transform: translateX(-50%) rotate(6deg);
+}
+
+.paper-five::before {
+    background-color: #B8C9AE;
+    transform: translateX(-50%) rotate(-3deg);
+}
+
+
+/* SMALL PAPER PIN EFFECT */
+
+.paper-one::after,
+.paper-three::after,
+.paper-five::after {
+
+    content: "";
+
+    position: absolute;
+
+    top: 8px;
+    right: 12px;
+
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+
+    background: #A47F62;
+
+    box-shadow:
+        1px 2px 3px rgba(0,0,0,0.22),
+        inset 1px 1px 2px rgba(255,255,255,0.5);
+}
+
+
+/* PAPER CORNER DETAILS */
+
+.paper-two,
+.paper-four {
+    border-bottom-right-radius: 14px;
+}
+
+
+/* UNREAD NOTIFICATION DOT */
+
+.paper-one .paper-category::after {
+
+    content: "";
+
+    display: inline-block;
+
+    width: 7px;
+    height: 7px;
+
+    margin-left: 7px;
+
+    vertical-align: middle;
+
+    border-radius: 50%;
+
+    background: #75946B;
+
+    box-shadow: 0 0 0 3px rgba(117,148,107,0.15);
+}
+
+
+/* SOFT PAPER SHADOW */
+
+.notification-paper {
+    box-shadow:
+        2px 5px 9px rgba(48,56,42,0.10),
+        4px 10px 18px rgba(48,56,42,0.09);
+}
+
+
+/* SCRAPBOOK BACKGROUND DETAILS */
+
+.notification-scrapbook {
+    background-image:
+        radial-gradient(
+            circle at 15% 20%,
+            rgba(166,185,151,0.13) 0px,
+            transparent 3px
+        ),
+        radial-gradient(
+            circle at 85% 75%,
+            rgba(166,185,151,0.13) 0px,
+            transparent 3px
+        ),
+        linear-gradient(
+            135deg,
+            #F2F0E7,
+            #EDEDE3
+        );
+}

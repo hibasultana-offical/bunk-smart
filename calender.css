@@ -1,0 +1,983 @@
+
+/* =========================================
+   BUNK SMART - ATTENDANCE CALENDAR
+   GREEN BOTANICAL THEME
+========================================= */
+
+
+/* =========================================
+   CALENDAR BACKGROUND AREA
+========================================= */
+
+.calendar-area {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+
+    background-image:
+        linear-gradient(
+            rgba(200, 220, 195, 0.20),
+            rgba(200, 220, 195, 0.20)
+        ),
+        url("/static/green.jpg");
+
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    border: 1px solid rgba(120, 155, 120, 0.25);
+    border-radius: 16px;
+
+    min-height: 250px;
+    background-color: transparent;
+    box-sizing: border-box;
+}
+
+
+/* =========================================
+   FULLSCREEN BUTTON
+========================================= */
+
+.calendar-fullscreen-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    padding: 10px 16px;
+
+    background: rgba(183, 206, 181, 0.2);
+    color: #385b40;
+
+    border: 1px solid rgba(120, 155, 120, 0.5);
+    border-radius: 9px;
+
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.calendar-fullscreen-btn:hover {
+    background: #B7CEB5;
+}
+
+
+/* =========================================
+   FULLSCREEN CLOSE BUTTON
+========================================= */
+
+.calendar-fullscreen-close {
+    display: none;
+
+    position: fixed;
+    top: 20px;
+    right: 25px;
+
+    z-index: 3000;
+
+    width: 42px;
+    height: 42px;
+
+    align-items: center;
+    justify-content: center;
+
+    background: #D2E3D0;
+    color: #294C32;
+
+    border-radius: 10px;
+
+    text-decoration: none;
+    font-size: 27px;
+    font-weight: bold;
+}
+
+
+/* =========================================
+   CALENDAR TOP ROW
+   MONTH + LEGEND
+========================================= */
+.calendar-top-row {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 10px;
+    margin-bottom: 12px;
+}
+.calendar-month-header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+.calendar-month-header h3 {
+    margin: 0;
+    font-size: 18px;
+    white-space: nowrap;
+    color: #000000;
+}
+
+
+/* MONTH ARROWS */
+
+.month-arrow {
+    width: 35px;
+    height: 35px;
+
+    border: none;
+    border-radius: 50%;
+
+    background: rgba(210, 227, 208, 0.85);
+    color: #000000;
+
+    font-size: 24px;
+    cursor: pointer;
+
+    flex-shrink: 0;
+    transition: 0.3s ease;
+}
+
+.month-arrow:hover {
+    background: #B7CEB5;
+}
+
+
+/* =========================================
+   CALENDAR LEGEND
+========================================= */
+.calendar-legend {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 14px;
+    margin: 0;
+    font-size: 11px;
+    color: #000000;
+}
+
+.calendar-legend span {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    white-space: nowrap;
+}
+
+
+/* LEGEND DOTS */
+
+.legend-dot {
+    width: 9px;
+    height: 9px;
+
+    border-radius: 50%;
+    flex-shrink: 0;
+}
+
+.present-dot {
+    background: #527F58;
+}
+
+.absent-dot {
+    background: #C97970;
+}
+
+.holiday-dot {
+    background: #D6AC65;
+}
+
+
+/* =========================================
+   CALENDAR GRID
+========================================= */
+
+.calendar-grid {
+    display: grid;
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    gap: 8px 4px;
+    width: 100%;
+    padding: 10px 0;
+    box-sizing: border-box;
+    justify-items: center;
+    align-items: center;
+}
+
+.calendar-date {
+    width: 32px;
+    height: 32px;
+    font-size: 12px;
+}
+
+.calendar-day-name {
+    font-size: 11px;
+    text-align: center;
+}
+/* WEEKDAY NAMES */
+
+.calendar-day-name {
+    color: #000000;
+
+    font-size: 13px;
+    font-weight: 700;
+
+    padding: 8px 0;
+    text-align: center;
+}
+
+
+/* DATE CIRCLES */
+
+.calendar-date {
+    width: 38px;
+    height: 38px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background: rgba(232, 240, 229, 0.88);
+    color: #000000;
+
+    font-size: 14px;
+    font-weight: 600;
+
+    border: 1px solid rgba(120, 155, 120, 0.3);
+
+    transition: 0.3s ease;
+}
+
+.calendar-date:hover {
+    background: #B7CEB5;
+    color: #000000;
+
+    transform: scale(1.08);
+}
+
+
+/* TODAY HIGHLIGHT */
+
+.calendar-date.today {
+    background: #456B4C;
+    color: #FFFFFF;
+
+    border: 2px solid #D2E3D0;
+
+    box-shadow: 0 3px 10px rgba(41, 76, 50, 0.25);
+}
+
+
+/* =========================================
+   DASHBOARD COMPACT VIEW
+========================================= */
+
+#calendar:not(:has(#calendarFullscreen:target)) .calendar-area {
+    padding: 12px;
+    min-height: 0;
+}
+
+
+/* MONTH + LEGEND */
+
+#calendar:not(:has(#calendarFullscreen:target)) .calendar-top-row {
+    gap: 8px;
+    margin-bottom: 8px;
+}
+
+#calendar:not(:has(#calendarFullscreen:target)) .calendar-month-header {
+    gap: 4px;
+    padding: 0;
+}
+
+#calendar:not(:has(#calendarFullscreen:target)) .calendar-month-header h3 {
+    font-size: 15px;
+}
+
+#calendar:not(:has(#calendarFullscreen:target)) .month-arrow {
+    width: 25px;
+    height: 25px;
+
+    font-size: 18px;
+}
+
+
+/* COMPACT LEGEND */
+
+#calendar:not(:has(#calendarFullscreen:target)) .calendar-legend {
+    flex-wrap: nowrap;
+    gap: 8px;
+
+    font-size: 10px;
+    white-space: nowrap;
+}
+
+#calendar:not(:has(#calendarFullscreen:target)) .calendar-legend span {
+    gap: 4px;
+}
+
+#calendar:not(:has(#calendarFullscreen:target)) .legend-dot {
+    width: 7px;
+    height: 7px;
+}
+
+
+/* COMPACT DATE GRID */
+
+#calendar:not(:has(#calendarFullscreen:target)) .calendar-grid {
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+
+    gap: 6px 3px;
+    padding: 4px 0;
+}
+
+#calendar:not(:has(#calendarFullscreen:target)) .calendar-date {
+    width: 30px;
+    height: 30px;
+
+    font-size: 11px;
+}
+
+#calendar:not(:has(#calendarFullscreen:target)) .calendar-day-name {
+    font-size: 10px;
+    padding: 3px 0;
+}
+
+
+/* =========================================
+   FULLSCREEN CALENDAR
+========================================= */
+
+#calendar:has(#calendarFullscreen:target) {
+    position: fixed !important;
+    inset: 0 !important;
+
+    z-index: 2000;
+
+    width: 100vw !important;
+    height: 100vh !important;
+    max-height: 100vh !important;
+
+    margin: 0 !important;
+    padding: 35px 45px !important;
+
+    box-sizing: border-box;
+    overflow-y: auto !important;
+
+    border-radius: 0 !important;
+
+    background-color: #E8F0E5;
+}
+
+
+/* SHOW CLOSE BUTTON */
+
+#calendar:has(#calendarFullscreen:target) .calendar-fullscreen-close {
+    display: flex;
+}
+
+
+/* FULLSCREEN INNER AREA */
+
+#calendar:has(#calendarFullscreen:target) .calendar-area {
+    width: 100%;
+
+    min-height: calc(100vh - 150px) !important;
+
+    display: flex;
+    flex-direction: column;
+
+    padding: 25px;
+
+    box-sizing: border-box;
+}
+
+
+/* FULLSCREEN TOP ROW */
+
+#calendar:has(#calendarFullscreen:target) .calendar-top-row {
+    justify-content: space-between;
+    align-items: center;
+
+    gap: 20px;
+    margin-bottom: 15px;
+}
+
+
+/* FULLSCREEN MONTH HEADER */
+
+#calendar:has(#calendarFullscreen:target) .calendar-month-header {
+    gap: 15px;
+    padding: 0 20px;
+    margin: 0;
+}
+
+#calendar:has(#calendarFullscreen:target) .calendar-month-header h3 {
+    font-size: 30px;
+}
+
+#calendar:has(#calendarFullscreen:target) .month-arrow {
+    width: 42px;
+    height: 42px;
+    font-size: 27px;
+}
+
+
+/* FULLSCREEN LEGEND */
+
+#calendar:has(#calendarFullscreen:target) .calendar-legend {
+    margin: 0;
+
+    gap: 30px;
+    font-size: 15px;
+}
+
+
+/* FULLSCREEN GRID */
+
+#calendar:has(#calendarFullscreen:target) .calendar-grid {
+    flex: 1;
+
+    min-height: 65vh;
+
+    grid-template-columns: repeat(7, minmax(0, 1fr));
+    grid-template-rows: repeat(6, minmax(75px, 1fr));
+
+    gap: 18px;
+
+    padding: 20px;
+}
+
+
+/* BIG DATE CIRCLES */
+
+#calendar:has(#calendarFullscreen:target) .calendar-date {
+    width: clamp(55px, 6vw, 85px);
+    height: clamp(55px, 6vw, 85px);
+
+    font-size: 19px;
+}
+
+
+/* BIG WEEKDAY NAMES */
+
+#calendar:has(#calendarFullscreen:target) .calendar-day-name {
+    font-size: 17px;
+}
+
+
+/* =========================================
+   BOTANICAL LEAF STICKERS
+========================================= */
+
+.calendar-sticker {
+    display: none;
+
+    position: absolute;
+
+    width: 115px;
+    height: 190px;
+
+    z-index: 2;
+    pointer-events: none;
+
+    opacity: 0.85;
+}
+
+
+/* SHOW LEAVES ONLY IN FULLSCREEN */
+
+#calendar:has(#calendarFullscreen:target) .calendar-sticker {
+    display: block;
+}
+
+
+/* LEFT LEAVES */
+
+.left-leaves {
+    left: 22px;
+    top: 32%;
+
+    transform: rotate(-12deg);
+}
+
+
+/* RIGHT LEAVES */
+
+.right-leaves {
+    right: 22px;
+    top: 32%;
+
+    transform: rotate(165deg);
+}
+
+
+/* LEAF SHAPE */
+
+.leaf {
+    position: absolute;
+
+    display: block;
+
+    width: 48px;
+    height: 75px;
+
+    border-radius: 100% 0 100% 0;
+
+    background: linear-gradient(
+        135deg,
+        #A9CBA5,
+        #527B59
+    );
+
+    box-shadow: 2px 4px 9px rgba(30, 65, 38, 0.18);
+}
+
+
+/* LEAF POSITIONS */
+
+.leaf-one {
+    top: 5px;
+    left: 30px;
+    transform: rotate(10deg);
+}
+
+.leaf-two {
+    top: 45px;
+    left: 5px;
+    transform: rotate(-45deg);
+}
+
+.leaf-three {
+    top: 65px;
+    left: 55px;
+    transform: rotate(45deg);
+}
+
+.leaf-four {
+    top: 110px;
+    left: 12px;
+    transform: rotate(-55deg);
+}
+
+.leaf-five {
+    top: 125px;
+    left: 62px;
+    transform: rotate(55deg);
+}
+
+
+/* =========================================
+   RESPONSIVE DESIGN
+========================================= */
+
+@media (max-width: 768px) {
+
+    .calendar-sticker {
+        width: 55px;
+        height: 110px;
+        opacity: 0.55;
+    }
+
+    .left-leaves {
+        left: 3px;
+    }
+
+    .right-leaves {
+        right: 3px;
+    }
+
+    .leaf {
+        width: 25px;
+        height: 42px;
+    }
+
+    #calendar:has(#calendarFullscreen:target) {
+        padding: 65px 12px 20px !important;
+    }
+
+    #calendar:has(#calendarFullscreen:target) .calendar-area {
+        padding: 12px;
+    }
+
+    #calendar:has(#calendarFullscreen:target) .calendar-top-row {
+        flex-wrap: wrap;
+    }
+
+    #calendar:has(#calendarFullscreen:target) .calendar-month-header {
+        padding: 0;
+    }
+
+    #calendar:has(#calendarFullscreen:target) .calendar-month-header h3 {
+        font-size: 21px;
+    }
+
+    #calendar:has(#calendarFullscreen:target) .calendar-legend {
+        gap: 10px;
+        font-size: 11px;
+    }
+
+    #calendar:has(#calendarFullscreen:target) .calendar-grid {
+        gap: 8px 3px;
+        padding: 8px 0;
+    }
+
+    #calendar:has(#calendarFullscreen:target) .calendar-date {
+        width: clamp(30px, 8vw, 55px);
+        height: clamp(30px, 8vw, 55px);
+        font-size: 13px;
+    }
+
+    #calendar:has(#calendarFullscreen:target) .calendar-day-name {
+        font-size: 11px;
+    }
+}
+#calendar:has(#calendarFullscreen:target) .calendar-top-row {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+}
+
+#calendar:has(#calendarFullscreen:target) .calendar-month-header {
+    justify-content: center;
+}
+
+#calendar:has(#calendarFullscreen:target) .calendar-legend {
+    justify-content: center;
+}
+
+#calendar:has(#calendarFullscreen:target) .calendar-grid {
+    width: 100%;
+    padding: 15px 0;
+}
+
+/* =====================================
+   BUNK SMART - ATTENDANCE STATUS PAPER CARD
+===================================== */
+
+#attendanceZone {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+
+    width: 100%;
+    min-height: 245px;
+
+    margin-top: 28px;
+    padding: 38px 42px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 30px;
+
+    background:
+        radial-gradient(ellipse at 15% 20%,
+            rgba(255,255,255,0.85), transparent 45%),
+        linear-gradient(125deg,
+            #F7F0DF,
+            #F0E8D5 55%,
+            #E7E6CF);
+
+    border: 1px solid #D9D1B9;
+    border-radius: 35px 48px 30px 42px;
+
+    box-shadow:
+        0 12px 25px rgba(55, 69, 48, 0.12),
+        inset 0 2px 5px rgba(255,255,255,0.8);
+
+    color: #233C30;
+}
+
+/* PAPER TEXTURE */
+
+#attendanceZone::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+
+    background:
+        repeating-linear-gradient(
+            0deg,
+            transparent,
+            transparent 3px,
+            rgba(115, 105, 75, 0.025) 4px
+        );
+
+    pointer-events: none;
+}
+
+/* SOFT BOTTOM SHADOW */
+
+#attendanceZone::after {
+    content: "";
+    position: absolute;
+
+    left: 8%;
+    right: 8%;
+    bottom: -9px;
+
+    height: 15px;
+
+    background: rgba(65, 83, 53, 0.15);
+    filter: blur(12px);
+
+    z-index: -2;
+}
+
+/* DECORATIVE TAPE */
+
+#attendanceZone .zone-tape {
+    position: absolute;
+    top: 12px;
+    left: 35px;
+
+    width: 105px;
+    height: 25px;
+
+    background:
+        repeating-linear-gradient(
+            45deg,
+            #EAF4E5 0px,
+            #8B9877 7px,
+            #647D50 7px,
+            #D8E8D0 14px
+        );
+
+    opacity: 0.8;
+    transform: rotate(-17deg);
+
+    box-shadow: 0 3px 6px rgba(0,0,0,0.12);
+}
+
+/* LEFT BOTANICAL DECORATION */
+
+#attendanceZone .zone-decoration-left {
+    position: absolute;
+    left: 18px;
+    bottom: 20px;
+
+    font-size: 48px;
+    opacity: 0.65;
+
+    transform: rotate(-20deg);
+}
+
+/* RIGHT DECORATION */
+
+#attendanceZone .zone-decoration-right {
+    position: absolute;
+    right: 85px;
+    top: 22px;
+
+    color: #B58D4C;
+    font-size: 30px;
+
+    transform: rotate(15deg);
+}
+
+/* TEXT AREA */
+
+#attendanceZone .zone-info {
+    position: relative;
+    z-index: 2;
+
+    flex: 1;
+    min-width: 0;
+
+    padding: 12px 0 10px 75px;
+}
+
+#attendanceZone .zone-label {
+    display: inline-block;
+
+    color: #61735A;
+
+    font-size: 11px;
+    font-weight: 800;
+
+    letter-spacing: 2.5px;
+    margin-bottom: 15px;
+}
+
+#attendanceZone .zone-info h3 {
+    color: #294A37;
+
+    font-family: Georgia, serif;
+    font-size: 32px;
+    font-weight: 700;
+
+    margin: 0 0 13px;
+}
+
+#attendanceZone .zone-info p {
+    color: #596A56;
+
+    font-size: 15px;
+    line-height: 1.8;
+
+    max-width: 470px;
+    margin: 0;
+}
+
+#attendanceZone .zone-note {
+    display: block;
+
+    margin-top: 17px;
+
+    color: #8B9877;
+    font-family: Georgia, serif;
+    font-size: 13px;
+    font-style: italic;
+}
+
+/* CIRCULAR PROGRESS AREA */
+
+#attendanceZone .zone-progress {
+    position: relative;
+    z-index: 2;
+
+    flex-shrink: 0;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    margin-right: 18px;
+}
+
+#attendanceZone .zone-progress-ring {
+    width: 155px;
+    height: 155px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: conic-gradient(
+        #527B5B 0deg 338.4deg,
+        #D6DCC6 338.4deg 360deg
+    );
+
+    box-shadow:
+        0 6px 15px rgba(53, 78, 51, 0.18),
+        inset 0 0 0 5px rgba(255,255,255,0.25);
+}
+
+#attendanceZone .zone-progress-inner {
+    width: 126px;
+    height: 126px;
+
+    display: grid;
+    place-items: center;
+
+    border-radius: 50%;
+
+    background: #F5EFDF;
+    border: 2px solid #D9D8C2;
+
+    box-shadow: inset 0 2px 8px rgba(70, 80, 54, 0.08);
+}
+
+#attendanceZone #zonePercentage {
+    color: #294B37;
+
+    font-family: Georgia, serif;
+    font-size: 39px;
+    font-weight: 700;
+}
+
+#attendanceZone .zone-progress-caption {
+    margin-top: 12px;
+
+    color: #78866B;
+    font-size: 12px;
+    font-weight: 600;
+
+    letter-spacing: 1px;
+}
+
+/* BOTTOM PAPER DETAIL */
+
+#attendanceZone .zone-leaf-bottom {
+    position: absolute;
+    right: 25px;
+    bottom: 5px;
+
+    color: #819477;
+    font-size: 42px;
+
+    transform: rotate(-25deg);
+    opacity: 0.65;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 700px) {
+
+    #attendanceZone {
+        padding: 35px 22px;
+        gap: 15px;
+    }
+
+    #attendanceZone .zone-info {
+        padding-left: 25px;
+    }
+
+    #attendanceZone .zone-info h3 {
+        font-size: 23px;
+    }
+
+    #attendanceZone .zone-info p {
+        font-size: 13px;
+    }
+
+    #attendanceZone .zone-progress {
+        margin-right: 0;
+    }
+
+    #attendanceZone .zone-progress-ring {
+        width: 110px;
+        height: 110px;
+    }
+
+    #attendanceZone .zone-progress-inner {
+        width: 88px;
+        height: 88px;
+    }
+
+    #attendanceZone #zonePercentage {
+        font-size: 28px;
+    }
+
+    #attendanceZone .zone-decoration-left {
+        font-size: 30px;
+    }
+}
+
+@media (max-width: 450px) {
+
+    #attendanceZone {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    #attendanceZone .zone-progress {
+        align-self: center;
+        margin-top: 10px;
+    }
+
+}

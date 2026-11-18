@@ -1,0 +1,1131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dashboard</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='dashboard.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='timetable.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='calender.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='graph.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='profile.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='notification.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='reminder.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='setting.css') }}">
+</head>
+<style> 
+    
+
+</style>
+<body>
+    <div class="dashboard-container">
+        <aside class="slidebar">
+            <div class="logo">
+                <h2>SMART BUNK</h2>
+                <p>Stay above 75%</p>
+            </div>
+            <nav class="menu">
+                <a href="#dashboard">Dashboard</a>
+                <br>
+                <a href="#attendance">Attendance</a>
+                <br>
+                <a href="#calendar">Calendar</a>
+                <br>
+                <a href="#timetable">TimeTable</a>
+                <br>
+                <a href="#subjects">My Subjects</a>
+                <br>
+                <a href="#reminders">Reminders</a>
+                <br> 
+                <a href="#settings">Settings</a>
+            </nav>
+            <div class="slider-bottom">
+                <p>Learn More. Grow Faster</p>
+            </div>
+        </aside>
+        <main class="main-container">
+            <header class="top-header" id="dashboard">
+                <div class="welcome-text">
+                    <h1>Welcome Back! <span> Hiba </span></h1>
+                    <p>Here's your attendance overview.</p>
+                </div>
+                <div class="header-right">
+                    <a href="#notificationsPopup" class="notification-trigger">Notifications</a>
+                    <a href="#profileDrawer" class="profile">
+                        <p>My Profile</p>
+                    </a>
+                </div>
+            </header>
+            <section class="attedance-summary" id="attendance">
+                <div class="summary-card">
+                    <h3>Overall Attendance</h3>
+                    <h2>--%</h2>
+                    <p>Your Current Attendance</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Required Attendance</h3>
+                    <h2>75%</h2>
+                    <p>Minimum Attendance Goal</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Total Lectures</h3>
+                    <h2>--</h2>
+                    <p>Lectures Conducted</p>
+                </div>
+                <div class="summary-card">
+                    <h3>Lectures Attend</h3>
+                    <h2>--</h2>
+                    <p>Lectures Marked Present</p>
+                </div>
+                
+            </section>
+            <section class="attendance-overview">
+                 <div class="trend-card" id="trend">
+                    <div class="graph-header">
+                        <div>
+                            <h2>Subject Attendance Trend</h2>
+                            <p>Track your attendance progress over time.</p>
+                        </div>
+                        <button
+                        class="graph-fullscreen-btn"
+                        type="button"
+                        onclick="document.getElementById('trend').classList.toggle('graph-expanded')">
+                        ⛶
+                        </button>
+                    </div>
+                    <div class="graph-summary">
+                        <div class="summary-box">
+                            <span>Overall Attendance</span>
+                            <h2>--%</h2>
+                        </div>
+                        <div class="summary-box">
+                            <span>Required Attendance</span>
+                            <h2>75%</h2>
+                        </div>
+                    </div>
+                    <div class="graph-container">
+                        <div class="chart-area" id="subjectChartArea">
+                            <div class="attendance-chart">
+                                <div class="chart-y-axis">
+                                    <span>100%</span>
+                                    <span>75%</span>
+                                    <span>50%</span>
+                                    <span>25%</span>
+                                    <span>0%</span>
+                                </div>
+                                <div class="chart-main">
+                                    <div class="chart-plot">
+                                        <div class="chart-grid-line line-100"></div>
+                                        <div class="chart-grid-line line-75"></div>
+                                        <div class="chart-grid-line line-50"></div>
+                                        <div class="chart-grid-line line-25"></div>
+                                        <div class="chart-grid-line line-0"></div>
+                                        <div class="attendance-target">
+                                            <span>75% Goal</span>
+                                        </div>
+                                        <div class="chart-bars">
+                                            <div class="bar-column">
+                                                <span class="bar-value">90%</span>
+                                                <div class="attendance-bar good-bar" style="height: 90%;"></div>
+                                                <span class="bar-subject">Maths</span>
+                                            </div>
+                                            <div class="bar-column">
+                                                <span class="bar-value">68%</span>
+                                                <div class="attendance-bar low-bar" style="height: 68%;"></div>
+                                                <span class="bar-subject">Physics</span>
+                                            </div>
+                                            <div class="bar-column">
+                                                <span class="bar-value">85%</span>
+                                                <div class="attendance-bar good-bar" style="height: 85%;"></div>
+                                                <span class="bar-subject">C++</span>
+                                            </div>
+                                            <div class="bar-column">
+                                                <span class="bar-value">72%</span>
+                                                <div class="attendance-bar low-bar" style="height: 72%;"></div>
+                                                <span class="bar-subject">Electrical</span>
+                                            </div>
+                                            <div class="bar-column">
+                                                <span class="bar-value">95%</span>
+                                                <div class="attendance-bar good-bar" style="height: 95%;"></div>
+                                                <span class="bar-subject">EAI</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="calendar-card" id="calendar">
+                    <span id="calendarFullscreen"></span>
+                    <div class="calendar-sticker left-leaves">
+                        <span class="leaf leaf-one"></span>
+                        <span class="leaf leaf-two"></span>
+                        <span class="leaf leaf-three"></span>
+                        <span class="leaf leaf-four"></span>
+                        <span class="leaf leaf-five"></span>
+                    </div>
+                    <div class="calendar-sticker right-leaves">
+                        <span class="leaf leaf-one"></span>
+                        <span class="leaf leaf-two"></span>
+                        <span class="leaf leaf-three"></span>
+                        <span class="leaf leaf-four"></span>
+                        <span class="leaf leaf-five"></span>
+                    </div>
+
+                     <h2>Attendance Calendar</h2><p>Keep track of your daily attendance.</p>
+                     <a href="#calendarFullscreen" class="calendar-fullscreen-btn" >⛶ </a>
+                     <div class="calendar-area">
+                        <div class="calendar-top-row">
+                            <div class="calendar-month-header">
+                                <button class="month-arrow" type="button">‹</button>
+                                <h3>November 2026</h3>
+                                <button class="month-arrow" type="button">›</button>
+                            </div>
+                            
+                            <div class="calendar-legend">
+                                <span>
+                                    <i class="legend-dot present-dot"></i>
+                                    Present
+                                </span>
+                                <span>
+                                    <i class="legend-dot absent-dot"></i>
+                                    Absent
+                                </span>
+                                <span>
+                                    <i class="legend-dot holiday-dot"></i>
+                                    Holiday
+                                </span>
+                            </div>
+                        </div>
+                        <div class="calendar-grid">
+                            <div class="calendar-day-name">Sun</div>
+                            <div class="calendar-day-name">Mon</div>
+                            <div class="calendar-day-name">Tue</div>
+                            <div class="calendar-day-name">Wed</div>
+                            <div class="calendar-day-name">Thu</div>
+                            <div class="calendar-day-name">Fri</div>
+                            <div class="calendar-day-name">Sat</div>
+                            <div class="calendar-date">1</div>
+                            <div class="calendar-date">2</div>
+                            <div class="calendar-date">3</div>
+                            <div class="calendar-date">4</div>
+                            <div class="calendar-date">5</div>
+                            <div class="calendar-date">6</div>
+                            <div class="calendar-date">7</div>
+                            <div class="calendar-date">8</div>
+                            <div class="calendar-date">9</div>
+                            <div class="calendar-date today">10</div>
+                            <div class="calendar-date">11</div>
+                            <div class="calendar-date">12</div>
+                            <div class="calendar-date">13</div>
+                            <div class="calendar-date">14</div>
+                            <div class="calendar-date">15</div>
+                            <div class="calendar-date">16</div>
+                            <div class="calendar-date">17</div>
+                            <div class="calendar-date">18</div>
+                            <div class="calendar-date">19</div>
+                            <div class="calendar-date">20</div>
+                            <div class="calendar-date">21</div>
+                            <div class="calendar-date">22</div>
+                            <div class="calendar-date">23</div>
+                            <div class="calendar-date">24</div>
+                            <div class="calendar-date">25</div>
+                            <div class="calendar-date">26</div>
+                            <div class="calendar-date">27</div>
+                            <div class="calendar-date">28</div>
+                            <div class="calendar-date">29</div>
+                            <div class="calendar-date">30</div>
+                        </div>
+                    </div>
+                    <div>
+                        <a href="#calendar" class="calendar-fullscreen-close">×</a>
+                    </div>
+                    <div class="attendance-zone-card green-zone" id="attendanceZone">
+                        <div class="zone-tape"></div>
+                        <div class="zone-decoration zone-decoration-left">🌿</div>
+                        <div class="zone-decoration zone-decoration-right">✦</div>
+                        <div class="zone-info">
+                            <span class="zone-label">YOUR ATTENDANCE STATUS</span>
+                            <h3 id="zoneTitle">Excellent Attendance</h3>
+                            <p id="zoneMessage">
+                                Your attendance is on track.
+                                Keep making time for what matters!
+                            </p>
+                            <span class="zone-note">Stay consistent. Keep growing.</span>
+                        </div>
+                        <div class="zone-progress">
+                            <div class="zone-progress-ring">
+                                <div class="zone-progress-inner">
+                                    <span id="zonePercentage">94%</span>
+                                </div>
+                            </div>
+                            <span class="zone-progress-caption">Your progress</span>
+                        </div>
+                        <div class="zone-leaf-bottom">❧</div>
+                    </div>
+                </div>    
+            </section >
+            <section class="overall" allowfullscreen>
+                <div class="timetable" id="time-table">
+                    <section class="timetable-section">
+                        <span id="timetableFullscreen"></span>
+                        <div class="timetable-header">
+                            <div class="timetable-title">
+                                <h2>Weekly Timetable</h2>
+                                <p>Manage your weekly schedule and attendance</p>
+                            </div>
+                            <div class="week-navigation">
+                                <button type="button" id="previousWeek">←</button>
+                                <span id="currentWeek">Current Week</span>
+                                <button type="button" id="nextWeek">→</button>
+                                <a href="#timetableFullscreen" class="fullscreen-btn">⛶ Fullscreen</a>
+                            </div>
+                        </div>
+                        <div class="attendance-legend">
+                            <span>
+                                <span class="legend-dot attended-dot"></span>
+                                Attended
+                            </span>
+                            <span>
+                                <span class="legend-dot absent-dot"></span>
+                                Not Attended
+                            </span>
+                            <span>
+                                <span class="legend-dot pending-dot"></span>
+                                Pending
+                            </span>
+                            <span>
+                                <span class="legend-dot cancelled-dot"></span>
+                                Cancelled
+                            </span>
+                        </div>
+                        <div class="timetable-wrapper">
+                            <table class="timetable">
+                                <thead>
+                                    <tr id="timetable-heading">
+                                        <th>Day</th>
+                                        <th>Slot 1</th>
+                                        <th>Slot 2</th>
+                                        <th>Slot 3</th>
+                                        <th>Slot 4</th>
+                                        <th class="break-heading">Slot 5<span>BREAK</span></th>
+                                        <th>Slot 6</th>
+                                        <th>Slot 7</th>
+                                        <th>Slot 8</th>
+                                        <th>Slot 9</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="timetable-body">
+                                    <tr data-day="Monday">
+                                        <th>Monday</th>
+                                        <td data-slot="1"></td>
+                                        <td data-slot="2"></td>
+                                        <td data-slot="3"></td>
+                                        <td data-slot="4"></td>
+                                        <td class="break-cell">BREAK</td>
+                                        <td data-slot="6"></td>
+                                        <td data-slot="7"></td>
+                                        <td data-slot="8"></td>
+                                        <td data-slot="9"></td>
+                                    </tr>
+                                    <tr data-day="Tuesday">
+                                        <th>Tuesday</th>
+                                        <td data-slot="1"></td>
+                                        <td data-slot="2"></td>
+                                        <td data-slot="3"></td>
+                                        <td data-slot="4"></td>
+                                        <td class="break-cell">BREAK</td>
+                                        <td data-slot="6"></td>
+                                        <td data-slot="7"></td>
+                                        <td data-slot="8"></td>
+                                        <td data-slot="9"></td>
+                                    </tr>
+                                    <tr data-day="Wednesday">
+                                        <th>Wednesday</th>
+                                        <td data-slot="1"></td>
+                                        <td data-slot="2"></td>
+                                        <td data-slot="3"></td>
+                                        <td data-slot="4"></td>
+                                        <td class="break-cell">BREAK</td>
+                                        <td data-slot="6"></td>
+                                        <td data-slot="7"></td>
+                                        <td data-slot="8"></td>
+                                        <td data-slot="9"></td>
+                                    </tr>
+                                    <tr data-day="Thursday">
+                                        <th>Thursday</th>
+                                        <td data-slot="1"></td>
+                                        <td data-slot="2"></td>
+                                        <td data-slot="3"></td>
+                                        <td data-slot="4"></td>
+                                        <td class="break-cell">BREAK</td>
+                                        <td data-slot="6"></td>
+                                        <td data-slot="7"></td>
+                                        <td data-slot="8"></td>
+                                        <td data-slot="9"></td>
+                                    </tr>
+                                    <tr data-day="Friday">
+                                        <th>Friday</th>
+                                        <td data-slot="1"></td>
+                                        <td data-slot="2"></td>
+                                        <td data-slot="3"></td>
+                                        <td data-slot="4"></td>
+                                        <td class="break-cell">BREAK</td>
+                                        <td data-slot="6"></td>
+                                        <td data-slot="7"></td>
+                                        <td data-slot="8"></td>
+                                        <td data-slot="9"></td>
+                                    </tr>
+                                    <tr data-day="Saturday">
+                                        <th>Saturday</th>
+                                        <td data-slot="1"></td>
+                                        <td data-slot="2"></td>
+                                        <td data-slot="3"></td>
+                                        <td data-slot="4"></td>
+                                        <td class="break-cell">BREAK</td>
+                                        <td data-slot="6"></td>
+                                        <td data-slot="7"></td>
+                                        <td data-slot="8"></td>
+                                        <td data-slot="9"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <a id="editLectureBtn" href="#editLectureModal" class="edit-lecture-trigger">
+                            <span>✎</span>Edit Lecture
+                        </a> 
+                        <section class="daily-attendance-section">
+                            <div class="daily-attendance-header">
+                                <div>
+                                    <h2>Daily Attendance</h2>
+                                    <p>Mark attendance for all lectures of a selected day</p>
+                                </div>
+                            </div>
+                            <form id="dayAttendanceForm">
+                                <div class="day-attendance-controls">
+                                    <div class="form-group">
+                                        <label for="attendanceDay">Select Day</label>
+                                        <select id="attendanceDay" name="attendanceDay">
+                                            <option value="">Select Day</option>
+                                            <option value="Monday">Monday</option>
+                                            <option value="Tuesday">Tuesday</option>
+                                            <option value="Wednesday">Wednesday</option>
+                                            <option value="Thursday">Thursday</option>
+                                            <option value="Friday">Friday</option>
+                                            <option value="Saturday">Saturday</option>
+                                            <option value="Sunday">Sunday</option>
+                                        </select>
+                                    </div>
+                                    <div class="day-status-options">
+                                        <label>
+                                            <input type="radio"
+                                            name="dayStatus"
+                                            value="attended">
+                                            Present
+                                        </label>
+                                        <label>
+                                            <input
+                                            type="radio"
+                                            name="dayStatus"
+                                            value="absent">
+                                            Absent
+                                        </label>
+                                    </div>
+                                    <button type="submit" id="saveDayAttendance">
+                                        Save Attendance
+                                    </button>
+                                </form>
+                            </section>
+                        </section>
+                        <a href="#time-table" class="fullscreen-close">×</a>
+                        <div class="edit-lecture-modal" id="editLectureModal">
+                            <div class="edit-lecture-content">
+                                <div class="modal-header">
+                                    <div>
+                                        <h2>Edit Lecture</h2>
+                                        <p>Update lecture information</p>
+                                    </div>
+                                    <a
+                                    href="#time-table" id="closeLectureModal"aria-label="Close popup">×</a>
+                                </div>
+                                <form id="editLectureForm">
+                                    <div class="form-group">
+                                        <label for="lectureDay">Select Day</label>
+                                        <select id="lectureDay" name="lectureDay">
+                                            <option value="">Select Day</option>
+                                            <option value="Monday">Monday</option>
+                                            <option value="Tuesday">Tuesday</option>
+                                            <option value="Wednesday">Wednesday</option>
+                                            <option value="Thursday">Thursday</option>
+                                            <option value="Friday">Friday</option>
+                                            <option value="Saturday">Saturday</option>
+                                            <option value="Sunday">Sunday</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lectureSlot">Select Slot</label>
+                                        <select id="lectureSlot" name="lectureSlot">
+                                            <option value="">Select Slot</option>
+                                            <option value="1">Slot 1</option>
+                                            <option value="2">Slot 2</option>
+                                            <option value="3">Slot 3</option>
+                                            <option value="4">Slot 4</option>
+                                            <option value="6">Slot 6</option>
+                                            <option value="7">Slot 7</option>
+                                            <option value="8">Slot 8</option>
+                                            <option value="9">Slot 9</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lectureSubject">Subject</label>
+                                        <input
+                                        type="text"id="lectureSubject"name="lectureSubject"placeholder="Enter subject name">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lectureStart">Start Time</label>
+                                        <input
+                                        type="time"
+                                        id="lectureStart"
+                                        name="lectureStart">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="lectureEnd">End Time</label>
+                                        <input
+                                        type="time"id="lectureEnd"name="lectureEnd">
+                                    </div>
+                                    <button type="submit" id="saveLectureBtn">
+                                        Save Changes
+                                    </button>
+                                </form>                
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <section class="subjects-section" id="subjects">
+                    <div class="section-heading">
+                        <h2>Subject-wise Attendance</h2>
+                        <p>Check your attendance in each subject.</p>
+                    </div>
+                    <div class="subjects-container">
+                        <div class="subject-card">
+                            <h3>Subject Name</h3>
+                            <p>Attendance: --%</p>
+                            <p>Present: -- | Absent: --</p>
+                        </div>
+                        <div class="subject-card">
+                            <h3>Subject Name</h3>
+                            <p>Attendance: --%</p>
+                            <p>Present: -- | Absent: --</p>
+                        </div>
+                        <div class="subject-card">
+                            <h3>Subject Name</h3>
+                            <p>Attendance: --%</p>
+                            <p>Present: -- | Absent: --</p>
+                        </div>
+                    </div>
+                </section>
+                <section class="reminders-section" id="reminders">
+                    <div class="reminders-editorial">
+                        <div class="reminders-topline">
+                            <span>YOUR PERSONAL ACADEMIC EDITION</span>
+                            <span>VOL. 01 / BUNK SMART</span>
+                        </div>
+                        <div class="reminders-heading">
+                            <div>
+                                <span class="reminders-kicker">A NOTE TO YOUR FUTURE SELF</span>
+                                <h2>A little <em>ahead.</em></h2>
+                                <p>Small things to remember. Bigger things to achieve.</p>
+                            </div>
+                            <div class="reminders-heading-art">
+                                <span class="reminders-art-leaf">❧</span>
+                                <span class="reminders-art-caption">Stay mindful<br>Stay consistent</span>
+                            </div>
+                        </div>
+                        <div class="reminders-divider"></div>
+                        <div class="reminders-list">
+                            <div class="editorial-reminder">
+                                <span class="reminder-number">01</span>
+                                <div class="reminder-main">
+                                    <span class="reminder-category">ATTENDANCE WATCH</span>
+                                    <h3>Keep your target in sight.</h3>
+                                    <p>Review subjects where your attendance needs a little attention.</p>
+                                </div>
+                                <div class="reminder-side">
+                                    <span class="reminder-status status-review">REVIEW</span>
+                                    <span class="reminder-side-icon">↗</span>
+                                </div>
+                            </div>
+                            <div class="editorial-reminder">
+                                <span class="reminder-number">02</span>
+                                <div class="reminder-main">
+                                    <span class="reminder-category">DAILY CHECK-IN</span>
+                                    <h3>Today's attendance.</h3>
+                                    <p>Take a moment to review and confirm your lectures for the day.</p>
+                                </div>
+                                <div class="reminder-side">
+                                    <span class="reminder-status status-daily">DAILY</span>
+                                    <span class="reminder-side-icon">↗</span>
+                                </div>
+                            </div>
+                            <div class="editorial-reminder">
+                                <span class="reminder-number">03</span>
+                                <div class="reminder-main">
+                                    <span class="reminder-category">THE EXAM DESK</span>
+                                    <h3>Make room for preparation.</h3>
+                                    <p>Keep MT1, MT2 and End Term dates updated in your academic calendar.</p>
+                                </div>
+                                <div class="reminder-side">
+                                    <span class="reminder-status status-planning">PLANNING</span>
+                                    <span class="reminder-side-icon">↗</span>
+                                </div>
+                            </div>
+                            <div class="editorial-reminder">
+                                <span class="reminder-number">04</span>
+                                <div class="reminder-main">
+                                    <span class="reminder-category">SCHEDULE NOTES</span>
+                                    <h3>Keep things in sync.</h3>
+                                    <p>Remember to update your weekly timetable whenever your schedule changes.</p>
+                                </div>
+                                <div class="reminder-side">
+                                    <span class="reminder-status status-update">UPDATE</span>
+                                    <span class="reminder-side-icon">↗</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="reminders-editorial-footer">
+                            <span>MAKE EVERY LECTURE COUNT.</span>
+                            <span class="reminders-footer-decoration">❧</span>
+                            <span>YOUR JOURNEY, YOUR PACE.</span>
+                        </div>
+                    </div>
+                </section>
+                <section class="quick-actions" id="quick-actions">
+                    <div class="section-heading">
+                        <h2>Quick Actions</h2>
+                        <p>Manage your attendance easily.</p>
+                    </div>
+                    <div class="actions-container">
+                        <div class="action-card">
+                            <h3>Mark Attendance</h3>
+                            <p>Review today's lectures.</p>
+                            <a href="dayAttendanceForm">Mark Now</a>
+                        </div>
+                        <div class="action-card">
+                            <h3>Manage Subjects</h3>
+                            <p>Add or edit your subjects.</p>
+                            <a href="">Manage</a>
+                        </div>
+                        <div class="action-card">
+                            <h3>View Calendar</h3>
+                            <p>Check your attendance calendar.</p>
+                            <a href="">View Calendar</a>
+                        </div>
+                    </div>
+                </section>
+                <div class="settings-overlay" id="settings">
+                    <!-- Background overlay and close target -->
+                     <a href="#settings-closed" class="settings-backdrop" aria-label="Close settings"></a>
+                     <div class="settings-experience">
+                        <!-- BIRD DELIVERY SCENE -->
+                         <div class="settings-delivery-scene">
+                            <div class="messenger-bird">
+                                <svg viewBox="0 0 180 115" role="img" aria-label="A little bird carrying a message">
+                                    <!-- Tail -->
+                                     <path d="M48 62 L20 47 L31 70 L14 78 L53 80"
+                                     fill="#718b5e" stroke="#526d49" stroke-width="2"
+                                     stroke-linejoin="round"/>
+                                     <!-- Body -->
+                                    <ellipse cx="83" cy="61" rx="42" ry="28"
+                                    fill="#8da77a" stroke="#526d49" stroke-width="2"/>
+                                    <!-- Wing -->
+                                    <path d="M65 55 Q82 28 112 49 Q96 78 66 69 Z"
+                                    fill="#6f895d" stroke="#526d49" stroke-width="2"/>
+                                    <!-- Head -->
+                                    <circle cx="119" cy="40" r="22"
+                                    fill="#9bb489" stroke="#526d49" stroke-width="2"/>
+                                    <!-- Small crest -->
+                                    <path d="M107 20 Q101 8 114 16 Q119 5 124 17"
+                                    fill="#718b5e"/>
+                                    <!-- Beak -->
+                                    <path d="M139 39 L158 46 L139 51 Z"
+                                    fill="#c49a5c" stroke="#987344" stroke-width="1.5"/>
+                                    <!-- Eye -->
+                                    <circle cx="125" cy="36" r="3.2" fill="#263c2e"/>
+                                    <circle cx="126" cy="35" r="1" fill="#fff"/>
+                                    <path d="M76 85 L74 94 M74 94 L67 98 M74 94 L81 98
+                                    M99 85 L98 94 M98 94 L91 98 M98 94 L105 98"
+                                    fill="none" stroke="#987344" stroke-width="2"
+                                    stroke-linecap="round"/>
+                                    <g class="bird-message">
+                                        <rect x="153" y="48" width="25" height="18" rx="2"
+                                        fill="#f4edda" stroke="#b99a68" stroke-width="1.5"/>
+                                        <path d="M154 49 L165.5 59 L177 49"
+                                        fill="none" stroke="#b99a68" stroke-width="1.3"/>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="delivery-caption">
+                                <span>A LITTLE MESSAGE IS ON ITS WAY</span>
+                            </div>
+                            <div class="delivered-envelope">
+                                <div class="envelope-back"></div>
+                                <div class="envelope-letter">
+                                    <span class="letter-small-title">A NOTE FOR YOU</span>
+                                    <span class="letter-main-title">Settings</span>
+                                    <span class="letter-leaf">❧</span>
+                                </div>
+                                <div class="envelope-front"></div>
+                                <div class="envelope-flap"></div>
+                                <span class="envelope-seal">B</span>
+                            </div>
+                        </div>
+                        <div class="settings-letter">
+                            <div class="settings-letter-top">
+                                <span>BUNK SMART</span>
+                                <span class="settings-letter-edition">YOUR PERSONAL EDITION · 01</span>
+                            </div>
+                            <div class="settings-letter-heading">
+                                <div>
+                                    <span class="settings-letter-kicker">A LITTLE SPACE OF YOUR OWN</span>
+                                    <h2>Your space,<br><em>your rules.</em></h2>
+                                    <p>Make Bunk Smart feel a little more like you.</p>
+                                </div>
+                                <div class="settings-letter-decoration">❧</div>
+                            </div>
+                            <div class="settings-letter-divider"></div>
+                            <div class="settings-options">
+                                <details class="settings-item">
+                                    <summary>
+                                        <span class="settings-symbol">✧</span>
+                                        <span class="settings-name">
+                                            <strong>College Profile</strong>
+                                            <small>Your academic identity</small>
+                                        </span>
+                                        <span class="settings-arrow">⌄</span>
+                                    </summary>
+                                    <div class="settings-content">
+                                        <p>Manage your college, course, branch and semester details.</p>
+                                        <button type="button" class="settings-edit-btn">Edit Details <span>↗</span></button>
+                                    </div>
+                                </details>
+                                <details class="settings-item">
+                                    <summary>
+                                        <span class="settings-symbol">◷</span>
+                                        <span class="settings-name">
+                                            <strong>Attendance Rules</strong>
+                                            <small>Set your own attendance goals</small>
+                                        </span>
+                                        <span class="settings-arrow">⌄</span>
+                                    </summary>
+                                    <div class="settings-content">
+                                        <p>Choose your minimum attendance percentage and personal buffer.</p>
+                                        <button type="button" class="settings-edit-btn">Manage Rules <span>↗</span></button>
+                                    </div>
+                                </details>
+                                <details class="settings-item">
+                                    <summary>
+                                        <span class="settings-symbol">▤</span>
+                                        <span class="settings-name">
+                                            <strong>Timetable Management</strong>
+                                            <small>Keep your week in sync</small>
+                                        </span>
+                                        <span class="settings-arrow">⌄</span>
+                                    </summary>
+                                    <div class="settings-content">
+                                        <p>Update lecture slots, working days, breaks and weekly schedules.</p>
+                                        <button type="button" class="settings-edit-btn">Edit Timetable <span>↗</span></button>
+                                    </div>
+                                </details>
+                                <details class="settings-item">
+                                    <summary>
+                                        <span class="settings-symbol">✦</span>
+                                        <span class="settings-name">
+                                            <strong>Academic Calendar</strong>
+                                            <small>Keep important dates close</small>
+                                        </span>
+                                        <span class="settings-arrow">⌄</span>
+                                    </summary>
+                                    <div class="settings-content">
+                                        <p>Manage exam dates, holidays and important academic events.</p>
+                                        <button type="button" class="settings-edit-btn">Update Calendar <span>↗</span></button>
+                                    </div>
+                                </details>
+                                <details class="settings-item">
+                                    <summary>
+                                        <span class="settings-symbol">♡</span>
+                                        <span class="settings-name">
+                                            <strong>Notification Preferences</strong>
+                                            <small>Choose what deserves a reminder</small>
+                                        </span>
+                                        <span class="settings-arrow">⌄</span>
+                                    </summary>
+                                    <div class="settings-content">
+                                        <p>Personalize attendance alerts and daily check-in reminders.</p>
+                                        <button type="button" class="settings-edit-btn">Edit Preferences <span>↗</span></button>
+                                    </div>
+                                </details>
+                                <details class="settings-item">
+                                    <summary>
+                                        <span class="settings-symbol">🔐</span>
+                                        <span class="settings-name">Account & Security</span>
+                                        <span class="settings-arrow">⌄</span>
+                                    </summary>
+                                    <div class="settings-content">
+                                        <p>Manage your account details and keep your account secure.</p>
+                                        <div class="settings-detail">
+                                            <strong>Account Information</strong>
+                                            <span>Manage your registered email and account details.</span>
+                                        </div>
+                                        <div class="settings-detail">
+                                            <strong>Password & Security</strong>
+                                            <span>Change your password and manage account security.</span>
+                                        </div>
+                                        <button class="settings-edit-btn" type="button">
+                                            Manage Account
+                                        </button>
+                                    </div>
+                                </details>
+                                <details class="settings-item">
+                                    <summary>
+                                        <span class="settings-symbol">🔒</span>
+                                        <span class="settings-name">Data & Privacy</span>
+                                        <span class="settings-arrow">⌄</span>
+                                    </summary>
+                                    <div class="settings-content">
+                                        <p>Your data belongs to you. Manage how it is stored and accessed.</p>
+                                        <div class="settings-detail">
+                                            <strong>Export Your Data</strong>
+                                            <span>Download your attendance and academic records.</span>
+                                        </div>
+                                        <div class="settings-detail">
+                                            <strong>Privacy</strong>
+                                            <span>Review your data and privacy preferences.</span>
+                                        </div>
+                                        <div class="settings-detail">
+                                            <strong>Delete Account</strong>
+                                            <span>Manage your account deletion preferences.</span>
+                                        </div>
+                                        <button class="settings-edit-btn" type="button">
+                                            Manage Data
+                                        </button>
+                                    </div>
+                                </details>
+                            </div>
+                            <div class="settings-letter-footer">
+                                <span>MAKE EVERY LECTURE COUNT.</span>
+                                <span>❧</span>
+                                <span>WITH CARE, BUNK SMART.</span>
+                            </div>
+                            <a href="#settings-closed" class="settings-close-btn" aria-label="Close settings">×</a>
+                        </div>
+                    </div>
+                </div>
+                <span id="settings-closed" class="settings-close-target"></span>
+
+            <footer class="dashboard-footer">
+                <div class="footer-content">
+                    <h3>BUNK SMART</h3>
+                    <p>Learn More. Grow Faster.</p>
+                    <p>Stay on track with your attendance and make time for your goals.</p>
+                </div>
+                <div class="footer-bottom">
+                    <p>© 2026 Bunk Smart. All Rights Reserved.</p>
+                </div>
+            </footer>
+        </main>
+        
+    </div>
+    
+<!-- MY PROFILE SIDE DRAWER -->
+<aside class="profile-drawer" id="profileDrawer">
+
+    <!-- PROFILE HEADER -->
+    <div class="profile-header">
+        <div>
+            <span class="profile-label">YOUR ACCOUNT</span>
+            <h2>My Profile</h2>
+        </div>
+
+        <a href="#dashboard" class="profile-close">&times;</a>
+    </div>
+
+    <div class="profile-content">
+
+        <!-- PROFILE INTRO -->
+        <div class="profile-intro">
+            <div class="profile-avatar">👤</div>
+
+            <h3 id="profileName">Student Name</h3>
+            <p id="profileEmail">student@email.com</p>
+
+            <span class="profile-badge">Bunk Smart Student</span>
+        </div>
+
+        <!-- PERSONAL INFORMATION -->
+        <section class="profile-section">
+
+            <div class="section-heading">
+                <h3>Personal Information</h3>
+            </div>
+
+            <div class="profile-detail">
+                <div>
+                    <span class="detail-label">Full Name</span>
+                    <p id="fullName">Student Name</p>
+                </div>
+                <button type="button" class="edit-detail" data-edit="fullName" aria-label="Edit full name">✎</button>
+            </div>
+
+            <div class="profile-detail">
+                <div>
+                    <span class="detail-label">Email Address</span>
+                    <p id="emailAddress">student@email.com</p>
+                </div>
+                <button type="button" class="edit-detail" data-edit="emailAddress" aria-label="Edit email">✎</button>
+            </div>
+
+            <div class="profile-detail">
+                <div>
+                    <span class="detail-label">Phone Number</span>
+                    <p id="phoneNumber">Not added yet</p>
+                </div>
+                <button type="button" class="edit-detail" data-edit="phoneNumber" aria-label="Edit phone number">✎</button>
+            </div>
+
+        </section>
+
+        <!-- ACADEMIC INFORMATION -->
+        <section class="profile-section">
+
+            <div class="section-heading">
+                <h3>Academic Information</h3>
+            </div>
+
+            <div class="profile-detail">
+                <div>
+                    <span class="detail-label">College Name</span>
+                    <p id="collegeName">Your College</p>
+                </div>
+                <button type="button" class="edit-detail" data-edit="collegeName" aria-label="Edit college">✎</button>
+            </div>
+
+            <div class="profile-detail">
+                <div>
+                    <span class="detail-label">Course / Branch</span>
+                    <p id="branch">Your Course</p>
+                </div>
+                <button type="button" class="edit-detail" data-edit="branch" aria-label="Edit course">✎</button>
+            </div>
+
+            <div class="profile-detail">
+                <div>
+                    <span class="detail-label">Current Year</span>
+                    <p id="currentYear">First Year</p>
+                </div>
+                <button type="button" class="edit-detail" data-edit="currentYear" aria-label="Edit year">✎</button>
+            </div>
+
+            <div class="profile-detail">
+                <div>
+                    <span class="detail-label">Current Semester</span>
+                    <p id="currentSemester">Semester 1</p>
+                </div>
+                <button type="button" class="edit-detail" data-edit="currentSemester" aria-label="Edit semester">✎</button>
+            </div>
+
+            <div class="profile-detail">
+                <div>
+                    <span class="detail-label">Enrollment Number</span>
+                    <p id="enrollment">Not added yet</p>
+                </div>
+                <button type="button" class="edit-detail" data-edit="enrollment" aria-label="Edit enrollment number">✎</button>
+            </div>
+
+        </section>
+
+        <!-- ACCOUNT SETTINGS -->
+        <section class="profile-section account-section">
+
+            <h3>Account Settings</h3>
+            <a href="#settings" class="profile-action">
+                <span>⚙</span>
+                Settings
+            </a>
+            <button type="button" class="profile-action logout-action">
+                <span>Log Out</span>
+                <span>↗</span>
+            </button>
+
+        </section>
+
+        <p class="profile-footer">Made for smarter student life 🌿</p>
+
+    </div>
+</aside>
+<!-- NOTIFICATIONS POPUP -->
+
+<div class="notifications-overlay" id="notificationsPopup">
+
+    <div class="notifications-popup">
+
+        <!-- POPUP HEADER -->
+
+        <div class="notifications-header">
+
+            <div class="notification-heading">
+                <span class="notification-subtitle">
+                    BUNK SMART • YOUR SPACE
+                </span>
+
+                <h2>Little Updates ✦</h2>
+
+                <p>Your updates, collected in one place.</p>
+            </div>
+
+            <a href="#dashboard" class="close-notifications">
+                &times;
+            </a>
+
+        </div>
+
+
+        <!-- NOTIFICATION SCRAPBOOK -->
+
+        <div class="notification-scrapbook">
+
+            <!-- CARD 1 -->
+
+            <div class="notification-paper paper-one">
+
+                <span class="paper-category attendance-tag">
+                    ATTENDANCE
+                </span>
+
+                <span class="paper-time">Today</span>
+
+                <h3>Attendance Updated!</h3>
+
+                <p>
+                    Your latest subject-wise attendance
+                    progress is ready to check.
+                </p>
+
+                <span class="paper-footer">
+                    ✦ Stay on track
+                </span>
+
+            </div>
+
+
+            <!-- CARD 2 -->
+
+            <div class="notification-paper paper-two">
+
+                <span class="paper-category reminder-tag">
+                    REMINDER
+                </span>
+
+                <span class="paper-time">Today</span>
+
+                <h3>Something is Coming Up!</h3>
+
+                <p>
+                    Don't forget your upcoming test
+                    or assignment.
+                </p>
+
+                <span class="paper-footer">
+                    Don't miss it !
+                </span>
+
+            </div>
+
+
+            <!-- CARD 3 -->
+
+            <div class="notification-paper paper-three">
+
+                <span class="paper-category lecture-tag">
+                    LECTURE UPDATE
+                </span>
+
+                <span class="paper-time">Yesterday</span>
+
+                <h3>Lecture Record Updated</h3>
+
+                <p>
+                    Your timetable attendance record
+                    has a new update.
+                </p>
+
+                <span class="paper-footer">
+                    ✦ Lecture notes
+                </span>
+
+            </div>
+
+
+            <!-- CARD 4 -->
+
+            <div class="notification-paper paper-four">
+
+                <span class="paper-category semester-tag">
+                    SEMESTER
+                </span>
+
+                <span class="paper-time">Earlier</span>
+
+                <h3>A New Semester Chapter!</h3>
+
+                <p>
+                    Review your subjects and get
+                    ready for the next semester.
+                </p>
+
+                <span class="paper-footer">
+                    New beginnings ✦
+                </span>
+
+            </div>
+
+
+            <!-- CARD 5 -->
+
+            <div class="notification-paper paper-five">
+
+                <span class="paper-category update-tag">
+                    BUNK SMART
+                </span>
+
+                <span class="paper-time">Earlier</span>
+
+                <h3>Keep Growing!</h3>
+
+                <p>
+                    Make time for learning,
+                    projects and new skills.
+                </p>
+
+                <span class="paper-footer">
+                    Learn More. Grow Faster.
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <!-- POPUP FOOTER -->
+
+        <div class="notifications-footer">
+            <p>✦ Stay organised. Stay above 75%. ✦</p>
+        </div>
+
+    </div>
+
+</div>
+<script src="/static/dashboard.js"></script>
+    
+</body>
+</html>
